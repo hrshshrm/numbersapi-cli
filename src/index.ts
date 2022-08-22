@@ -42,9 +42,9 @@ const askDate = async (): Promise<NumbersAPI["date"]> => {
         type: 'datetime',
         name: 'date',
         message: 'Enter a date to query:',
-        format: ['m', '/', 'd']
+        format: ['mm', '/', 'dd']
     })
-    return `${new Date(date).getUTCMonth() + 1}/${new Date(date).getUTCDate()}`
+    return `${("0" + (new Date(date).getUTCMonth() + 1)).slice(-2)}/${("0" + new Date(date).getUTCDate()).slice(-2)}`
 }
 
 const handleRequest = async (type: NumbersAPIType["types"], data: number | 'random' | NumbersAPIType["date"]): Promise<string> => {
@@ -67,7 +67,7 @@ const handleRequest = async (type: NumbersAPIType["types"], data: number | 'rand
         }
         return response
     } catch(error) {
-        console.log(error)
+        // console.log(error)
         throw error
     }
 }
@@ -98,5 +98,6 @@ try {
         process.exit(1)
     }
 } catch(error) {
-    console.log(error)
+    console.log(error.message)
+    process.exit(1)
 }
