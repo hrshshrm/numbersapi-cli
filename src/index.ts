@@ -41,7 +41,7 @@ const askDate = async (): Promise<NumbersAPI["date"]> => {
         //@ts-ignore
         type: 'datetime',
         name: 'date',
-        message: 'Enter a date to query:',
+        message: 'Enter a date (MM/DD) to query:',
         format: ['mm', '/', 'dd']
     })
     return `${("0" + (new Date(date).getUTCMonth() + 1)).slice(-2)}/${("0" + new Date(date).getUTCDate()).slice(-2)}`
